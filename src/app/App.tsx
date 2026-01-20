@@ -4,8 +4,10 @@ import { Sidebar } from '@/app/components/Sidebar';
 import { InteractiveMap } from '@/app/components/InteractiveMap';
 import { VideoModal } from '@/app/components/VideoModal';
 import { AnimatedGuide } from '@/app/components/AnimatedGuide';
-import { IngredientsPanel } from '@/app/components/IngredientsPanel';
-import { TimerPanel } from '@/app/components/TimerPanel';
+import { MapViewer } from '@/app/components/MapViewer';
+import { ProducerInfo } from '@/app/components/ProducerInfo';
+import { CultivationInfo } from '@/app/components/CultivationInfo';
+import { SoilAnalysis } from '@/app/components/SoilAnalysis';
 import { InfoPanel } from '@/app/components/InfoPanel';
 import { QrCode } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -23,10 +25,10 @@ interface MapPoint {
 
 // Mensajes del guía para cada sección
 const guideMessages: Record<string, string> = {
-  map: '¡Bienvenido! Soy tu guía en este viaje por el mundo del cacao. Haz clic en los puntos del mapa para explorar cada etapa del proceso.',
-  ingredients: 'Aquí tienes todos los ingredientes necesarios para hacer chocolate artesanal. ¡Marca cada uno cuando lo tengas listo!',
-  timer: 'Usa estos temporizadores para controlar perfectamente cada proceso. El tiempo es crucial para obtener el mejor sabor.',
-  info: 'Descubre la fascinante historia y los increíbles beneficios del cacao. ¡Hay tanto por aprender!',
+  map: '¡Bienvenido! Este es el visor geoespacial de tu finca. Aquí puedes visualizar los perímetros de tus parcelas y cargar archivos GeoJSON o shapefiles.',
+  producer: 'Aquí encontrarás toda la información detallada del productor y su finca cacaotera.',
+  cultivation: 'Información técnica sobre las prácticas de cultivo, variedades y manejo agronómico de la finca.',
+  soil: 'Resultados del análisis físico-químico del suelo con recomendaciones específicas para mejorar la producción.',
   gallery: 'Explora nuestra colección de imágenes del proceso de producción del cacao.',
   videos: 'Aquí encontrarás videos educativos sobre cada etapa de producción.',
   tutorial: 'Sigue este tutorial paso a paso para convertirte en un experto del cacao.',
@@ -49,15 +51,13 @@ export default function App() {
   const renderContent = () => {
     switch (activeSection) {
       case 'map':
-        return (
-          <div className="w-full h-full p-6">
-            <InteractiveMap onPointClick={handlePointClick} />
-          </div>
-        );
-      case 'ingredients':
-        return <IngredientsPanel />;
-      case 'timer':
-        return <TimerPanel />;
+        return <MapViewer />;
+      case 'producer':
+        return <ProducerInfo />;
+      case 'cultivation':
+        return <CultivationInfo />;
+      case 'soil':
+        return <SoilAnalysis />;
       case 'info':
         return <InfoPanel />;
       case 'gallery':
@@ -209,13 +209,13 @@ export default function App() {
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-r from-amber-800 to-orange-900 text-white px-6 py-4 shadow-lg"
+          className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-r from-green-800 to-emerald-900 text-white px-6 py-4 shadow-lg"
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold">Sistema Interactivo de Cacao</h1>
-              <p className="text-sm text-amber-200">
-                Explora, aprende y crea con el cacao
+              <h1 className="text-2xl font-bold">Sistema de Análisis de Fincas Cacaoteras</h1>
+              <p className="text-sm text-green-200">
+                Gestión integral y visualización geoespacial
               </p>
             </div>
             <Button

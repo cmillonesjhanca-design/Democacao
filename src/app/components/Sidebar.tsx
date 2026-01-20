@@ -3,10 +3,11 @@ import {
   Home, 
   BookOpen, 
   Image, 
-  Video, 
-  ListChecks, 
-  Clock, 
-  Info,
+  Video,
+  User,
+  Map,
+  Leaf,
+  Beaker,
   ChevronRight
 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -18,12 +19,12 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { id: 'map', label: 'Mapa Principal', icon: Home },
-  { id: 'ingredients', label: 'Ingredientes', icon: ListChecks },
-  { id: 'timer', label: 'Temporizador', icon: Clock },
+  { id: 'map', label: 'Mapa Geoespacial', icon: Map },
+  { id: 'producer', label: 'Info. Productor', icon: User },
+  { id: 'cultivation', label: 'Cultivo', icon: Leaf },
+  { id: 'soil', label: 'Análisis de Suelo', icon: Beaker },
   { id: 'gallery', label: 'Galería', icon: Image },
   { id: 'videos', label: 'Videos', icon: Video },
-  { id: 'info', label: 'Información', icon: Info },
   { id: 'tutorial', label: 'Tutorial', icon: BookOpen },
 ];
 
@@ -42,11 +43,11 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
           className="flex items-center gap-3"
         >
           <div className="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🍫</span>
+            <span className="text-2xl">🌱</span>
           </div>
           <div>
-            <h2 className="text-xl font-bold">Tutorial de Cacao</h2>
-            <p className="text-xs text-amber-300">Explora el mundo del chocolate</p>
+            <h2 className="text-xl font-bold">Gestión de Fincas</h2>
+            <p className="text-xs text-amber-300">Análisis cacaotero integral</p>
           </div>
         </motion.div>
       </div>
@@ -98,12 +99,11 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
       <div className="p-6 mt-auto border-t border-amber-700">
         <div className="bg-amber-800/50 rounded-lg p-4">
           <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-            <Info className="w-4 h-4" />
-            Nota Importante
+            <Leaf className="w-4 h-4" />
+            Sistema Integrado
           </h3>
           <p className="text-xs text-amber-200 leading-relaxed">
-            Para cargar tus archivos TIF y MP4, consulta la documentación sobre 
-            optimización de archivos pesados.
+            Visualización geoespacial y análisis técnico para productores de cacao.
           </p>
         </div>
       </div>
